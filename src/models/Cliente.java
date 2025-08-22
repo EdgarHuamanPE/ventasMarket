@@ -1,16 +1,32 @@
 package models;
 
+import utils.StringUtils;
+
 public class Cliente extends Persona{
 
     private String correo;
     private String telefono;
     private String fullname;
 
-    public Cliente(int dni, String nombre, String apellidoPat, String apellidoMat,String correo,String telefono) {
+
+    public Cliente(){
+        this(0,"default","default","default","default","default");
+    }
+
+    public Cliente(String nombre,String apellidoPat){
+        this(0,nombre,apellidoPat,"default","default","default");
+    }
+
+    public Cliente(int dni, String nombre, String apellidoPat, String apellidoMat, String correo, String telefono) {
         super(dni, nombre, apellidoPat, apellidoMat);
         this.correo= correo;
         this.telefono=telefono;
-        this.fullname=nombre.substring(0,1) +" "+ apellidoPat +" "+ apellidoMat;
+        this.fullname= StringUtils.capitalizar(nombre,apellidoPat);
+
+    }
+
+    public String getFullname() {
+        return fullname;
     }
 
     public String getCorreo() {

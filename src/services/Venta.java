@@ -4,6 +4,7 @@ import models.Cliente;
 import models.DetalleVenta;
 import models.Persona;
 import models.Producto;
+import utils.StringUtils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -69,7 +70,7 @@ public class Venta implements  IVenta {
         System.out.println(" ".repeat(20)+"BOLETA DE VENTA #" + serieVenta);
         System.out.println("=".repeat(60));
         System.out.println("Fecha: " + fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))
-                + " ".repeat(15)+"Cliente:"+getCliente().getNombre()+" "+getCliente().getApellidoPat());
+                + " ".repeat(15)+"Cliente:" + cliente.getFullname());
         System.out.println("-".repeat(60));
 
         for (DetalleVenta detalleVenta : detalleV) {
@@ -80,6 +81,10 @@ public class Venta implements  IVenta {
         System.out.printf("IGV: S/%.2f%n", calcularTotal()*IGV/100);
         System.out.printf("TOTAL: S/%.2f%n", calcularTotal()*(IGV+100)/100);
         System.out.println("=".repeat(60));
+    }
+
+    public boolean tieneProductos() {
+        return !detalleV.isEmpty();
     }
 
 }

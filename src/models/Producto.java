@@ -61,7 +61,7 @@ public class Producto {
     }
 
     public void imprimirProducto(){
-        System.out.printf("%-15s %-10s $%-8.2f Stock: %-5d Categoría: %s%n",
+        System.out.printf("%-15s %-10s S/%-8.2f Stock: %-5d Categoría: %s%n",
                 nombre, codigo, precio, stock, categoria);
     }
 }
